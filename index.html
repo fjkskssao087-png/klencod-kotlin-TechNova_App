@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Anime 4K</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background-color: #000; color: white; overflow: hidden; height: 100vh; }
+    
+    /* شاشة الترحيب */
+    #splash {
+        position: fixed; inset: 0; background: #000; display: flex; flex-direction: column;
+        justify-content: center; align-items: center; z-index: 1000; transition: opacity 1s ease;
+    }
+    #splash h1 { font-size: 50px; font-weight: 900; letter-spacing: -2px; animation: fadeUp 1s ease; }
+    #splash p { color: #86868b; letter-spacing: 5px; font-size: 12px; margin-top: 10px; animation: fadeUp 1.5s ease; }
+    
+    /* الشاشة الرئيسية */
+    #home {
+        padding: 60px 24px; display: none; opacity: 0; transition: opacity 0.8s ease;
+        height: 100vh; overflow-y: auto;
+    }
+    h2 { font-size: 40px; font-weight: 800; line-height: 1.1; margin-bottom: 10px; }
+    .gradient-text {
+        background: linear-gradient(135deg, #0A84FF, #5E5CE6, #F093FB);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .search-bar {
+        background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 20px; padding: 15px 20px; display: flex; align-items: center;
+        gap: 10px; margin: 30px 0; backdrop-filter: blur(10px);
+    }
+    .search-bar input { background: none; border: none; color: white; font-size: 16px; outline: none; width: 100%; }
+    
+    .btn {
+        background: linear-gradient(135deg, #0A84FF, #5E5CE6);
+        color: white; padding: 18px; border-radius: 20px; text-align: center;
+        font-weight: bold; font-size: 18px; margin-top: 20px; border: none;
+        box-shadow: 0 10px 20px rgba(10,132,255,0.3); cursor: pointer;
+    }
+    
+    /* معرض الصور */
+    #gallery { display: none; padding: 20px; height: 100vh; overflow-y: auto; background: #000; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-top: 20px; }
+    .grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 16px; }
+    .back-btn { position: fixed; top: 20px; right: 20px; background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 20px; border: none; color: white; z-index: 10; font-weight: bold;}
+    
+    /* الخلفية المتحركة */
+    .orb { position: fixed; border-radius: 50%; filter: blur(80px); z-index: -1; opacity: 0.5; animation: float 15s infinite alternate; }
+    .orb1 { width: 300px; height: 300px; background: #0A84FF; top: -50px; right: -50px; }
+    .orb2 { width: 400px; height: 400px; background: #5E5CE6; bottom: -100px; left: -100px; animation-delay: -5s; }
+
+    @keyframes float { 0% { transform: translate(0,0); } 100% { transform: translate(-50px, 50px); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+    <!-- الخلفية -->
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <!-- شاشة البداية -->
+    <div id="splash">
+        <h1>Anime 4K</h1>
+        <p>WORLD OF ART</p>
+    </div>
+
+    <!-- الواجهة الرئيسية -->
+    <div id="home">
+        <h2>مرحباً بك في<br><span class="gradient-text">عالم الأنمي</span></h2>
+        <p style="color:#86868b; margin-top:15px;">استكشف آلاف الخلفيات بدقة 4K</p>
+        
+        <div class="search-bar">
+            <span style="font-size:20px;">🔍</span>
+            <input type="text" placeholder="ابحث عن خلفية...">
+        </div>
+
+        <button class="btn" onclick="openGallery()">تصفح الخلفيات</button>
+    </div>
+
+    <!-- معرض الصور -->
+    <div id="gallery">
+        <button class="back-btn" onclick="closeGallery()">رجوع</button>
+        <div class="grid">
+            <!-- يمكنك إضافة روابط 300 صورة هنا -->
+            <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500&q=80" />
+            <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&q=80" />
+            <img src="https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=500&q=80" />
+            <img src="https://images.unsplash.com/photo-1541562232579-512a21360020?w=500&q=80" />
+            <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=500&q=80" />
+            <img src="https://images.unsplash.com/photo-1519638831568-d9897f54ed69?w=500&q=80" />
+            <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500&q=80" />
+            <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&q=80" />
+        </div>
+    </div>
+
+    <script>
+        // الانتقال من شاشة الترحيب للواجهة
+        setTimeout(() => {
+            document.getElementById('splash').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('splash').style.display = 'none';
+                const home = document.getElementById('home');
+                home.style.display = 'block';
+                setTimeout(() => home.style.opacity = '1', 50);
+            }, 1000);
+        }, 2000);
+
+        // فتح وإغلاق المعرض
+        function openGallery() {
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('gallery').style.display = 'block';
+        }
+        function closeGallery() {
+            document.getElementById('gallery').style.display = 'none';
+            document.getElementById('home').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
